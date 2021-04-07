@@ -16,7 +16,7 @@ $(document).ready(()=>{
                             <td>${element.segundo_nombre}</td>
                             <td>${element.primer_apellido}</td>
                             <td>${element.segundo_apellido}</td>
-                            <td>${element.estado}</td>
+                            <td>${element.nombEstado}</td>
 
                             <td>
                                 <button id="btn-edit" class="btn btn-warning">PROCESAR</button>
