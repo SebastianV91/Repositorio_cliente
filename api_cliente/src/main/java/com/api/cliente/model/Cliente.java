@@ -26,6 +26,8 @@ public class Cliente implements Serializable{
 	private String segundo_apellido;
 	@Column(nullable = false)
 	private int estado;
+	@Transient
+	private String nombEstado = "";
 
 	public Cliente() {
 		
@@ -90,6 +92,25 @@ public class Cliente implements Serializable{
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public String getNombEstado() {
+		
+		switch(this.getEstado()) {
+			case 0:
+				this.setNombEstado("NO PROCESADO");
+				break;
+			case 1:
+				this.setNombEstado("PROCESADO");	
+				break;
+		
+		}
+		
+		return nombEstado;
+	}
+
+	public void setNombEstado(String nombEstado) {
+		this.nombEstado = nombEstado;
 	}
 
 	private static final long serialVersionUID = 1L;
