@@ -3,7 +3,41 @@ $(document).ready(()=>{
     const list = () => {
 
         $.ajax({
-            url: 'http://localhost:8080/api/clientes',            
+            url: 'http://localhost:8084/api/clientes',            
+            type:'GET',
+            datatype:'json',
+            success: function(res){
+                let data = '';
+                res.forEach(element => {
+                    data+= `
+                        <tr alumnoId = ${element.id} >
+                            <td>${element.id}</td>
+                            <td>${element.primer_nombre}</td>
+                            <td>${element.segundo_nombre}</td>
+                            <td>${element.primer_apellido}</td>
+                            <td>${element.segundo_apellido}</td>
+                            <td>${element.nombEstado}</td>
+
+                            <td>
+                                <button id="btn-edit" class="btn btn-warning">PROCESAR</button>
+                            </td>
+
+                        </tr>
+                    `
+                    
+                });
+                
+                $('#tbody').html(data);
+    
+            }
+        })
+
+    }
+
+    const listProcesados = () => {
+
+        $.ajax({
+            url: 'http://localhost:8084/api/clientesProcesados',            
             type:'GET',
             datatype:'json',
             success: function(res){
@@ -45,7 +79,7 @@ $(document).ready(()=>{
             }
 
             $.ajax({
-                url: 'http://localhost:8080/api/save',
+                url: 'http://localhost:8084/api/save',
                 contentType: 'application/json',
                 type: 'POST',
                 data:JSON.stringify(datosAlumno),
@@ -72,14 +106,14 @@ $(document).ready(()=>{
             }
 
             $.ajax({
-                url: 'http://localhost:8080/api/procesar/' + id,
+                url: 'http://localhost:8084/api/procesar/' + id,
                 contentType: 'application/json',
                 type: 'PUT',
                 data: JSON.stringify(datosAlumno),
                 dataType:'json',
                 success: (res) => {
 
-                    list();
+                    listProcesados();
 
                 }
             })
@@ -100,5 +134,6 @@ $(document).ready(()=>{
     list();
     save();
     procesarCliente();
+    listProcesados();
 
 })

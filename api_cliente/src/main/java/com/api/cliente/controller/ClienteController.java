@@ -34,6 +34,11 @@ public class ClienteController {
 		return clienteService.getClientes();
 	}
 	
+	@GetMapping("/clientesProcesados")
+	public List<Cliente> clientesProcesados(){
+		return clienteService.clientesProcesados();
+	}
+	
 	@GetMapping("/cliente/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		

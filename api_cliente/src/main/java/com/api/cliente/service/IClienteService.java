@@ -12,4 +12,6 @@ public interface IClienteService {
 
 	Cliente saveCliente(Cliente cliente);
 	
+	List<Cliente> clientesProcesados();
+	
 }
